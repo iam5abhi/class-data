@@ -2,12 +2,17 @@ import { useRouter } from 'next/router';
 import React,{useState,useEffect} from 'react'
 import PrivateRoute from '../../PrivateRoute/PrivateRoute';
 import UploadFile from '../../components/UploadFile/UploadFile';
+import FileSaver from 'file-saver';
 
 const HomePage = () => {
     const router = useRouter();
     const [contact,setContact]=useState()
     const [open,setOpen]=useState(false)
     
+    const saveManual = (data) => {
+        FileSaver.saveAs(data.file,data.title);
+    };
+
     const deleteContacts = (id) => {
         fetch("/api/property/delete-property", {
           method: "POST",
@@ -96,7 +101,8 @@ const HomePage = () => {
                                         {data.uploadType}  
                                     </td>
                                     <td className="text-center px-5 py-5 bg-white text-sm">
-                                       <a className="text-blue-600" target='_blank' href={data.file} >Link</a> 
+                                       <button type='button' onClick={()=>saveManual(data)} className="text-blue-600" >Link</button> 
+                                       
                                     </td>
                                     <td className="text-center px-5 py-5 bg-white text-sm">                                                                                                                                            
                                         <span className={`mr-3 cursor-pointer relative inline-block px-3 py-1 font-semibold ${data.status=="newlead"?"text-green-900":data.status=="inprogress"?"text-yellow-900":data.status=="converted"?"text-purple-900":data.status=="onhold"?"text-blue-900":"text-red-900"} leading-tight`}>

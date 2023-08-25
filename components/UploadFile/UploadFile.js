@@ -129,7 +129,7 @@ export default function UploadFile ({setOpen,open,getCategotyData}) {
                               required
                             >
                               <option value="">Choose</option>
-                              {subcategory.map(data=><option key={data.id} value={data.id}>{data.name}({data.categoryName})</option>)}
+                              {subcategory.map(data=><option key={data.id} value={data.name}>{data.name}({data.categoryName})</option>)}
                             </select>
                           </div>
                           <div className='mb-4'>
@@ -139,8 +139,8 @@ export default function UploadFile ({setOpen,open,getCategotyData}) {
                           <div className="mb-4 flex gap-5">
                           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File Type <span class="text-red-600">*</span></label>
                             <div className="flex gap-1">
-                                <input type="radio" id="name" name='uploadType' value="PDF" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
-                                <label htmlfor="specialization" className="block text-sm font-medium text-gray-900 ">PDF</label>
+                                <input type="radio" id="name" name='uploadType' value="WORD" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
+                                <label htmlfor="specialization" className="block text-sm font-medium text-gray-900 ">WORD</label>
                             </div>
                             <div className="flex gap-1">
                                 <input type="radio" id="name" name='uploadType' value="PPT" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
