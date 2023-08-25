@@ -86,9 +86,9 @@ const HomePage = () => {
                                     <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                        Get File
                                     </th>
-                                    <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                    {/* <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                          Status
-                                    </th>
+                                    </th> */}
                                     <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                         Actions
                                     </th> 
@@ -110,12 +110,12 @@ const HomePage = () => {
                                        <button type='button' onClick={()=>saveManual(data)} className="text-blue-600" >Link</button> 
                                        
                                     </td>
-                                    <td className="text-center px-5 py-5 bg-white text-sm">                                                                                                                                            
+                                    {/* <td className="text-center px-5 py-5 bg-white text-sm">                                                                                                                                            
                                         <span className={`mr-3 cursor-pointer relative inline-block px-3 py-1 font-semibold ${data.status=="newlead"?"text-green-900":data.status=="inprogress"?"text-yellow-900":data.status=="converted"?"text-purple-900":data.status=="onhold"?"text-blue-900":"text-red-900"} leading-tight`}>
                                             <span aria-hidden className={`absolute inset-0 opacity-50 rounded-full ${data.status=="newlead"?"bg-green-200":data.status=="inprogress"?"bg-yellow-200":data.status=="converted"?"bg-purple-200":data.status=="onhold"?"bg-blue-200":"bg-red-200"}`} />
                                             <span className="relative">{data.status}</span>
                                         </span>
-                                    </td>  
+                                    </td>   */}
                                     <td className="text-center px-5 py-5 bg-white text-sm">
                                         <span onClick={()=>UpdateHandler(data.id)} className="mr-3 cursor-pointer relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
                                             <span aria-hidden className="absolute inset-0 bg-yellow-200 opacity-50 rounded-full" />
