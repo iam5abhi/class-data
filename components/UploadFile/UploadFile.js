@@ -150,6 +150,10 @@ export default function UploadFile ({setOpen,open,getCategotyData}) {
                                 <input type="radio" id="name" name='uploadType' value="XLS" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
                                 <label htmlfor="specialization" className="block text-sm font-medium text-gray-900 ">XLS</label>
                             </div>
+                            <div className="flex gap-1">
+                                <input type="radio" id="name" name='uploadType' value="PDF" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
+                                <label htmlfor="specialization" className="block text-sm font-medium text-gray-900 ">PDF</label>
+                            </div>
                           </div>
                           <div className='mb-5'>
                             <button
