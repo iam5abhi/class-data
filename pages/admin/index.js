@@ -1,20 +1,26 @@
-import { useRouter } from 'next/router';
 import React,{useState,useEffect} from 'react'
 import PrivateRoute from '../../PrivateRoute/PrivateRoute';
 import UploadFile from '../../components/UploadFile/UploadFile';
 import FileSaver from 'file-saver';
+import UpdateFile from '../../components/UploadFile/UpdateFile';
 
 const HomePage = () => {
-    const router = useRouter();
     const [contact,setContact]=useState()
     const [open,setOpen]=useState(false)
+    const [updateOpen,setUpdateOpen]=useState(false)
+    const [ids,setIds]=useState()
     
     const saveManual = (data) => {
         FileSaver.saveAs(data.file,data.title);
     };
 
-    const deleteContacts = (id) => {
-        fetch("/api/property/delete-property", {
+    const UpdateHandler=(id)=>{
+        setIds(id)
+        setUpdateOpen(true)
+    }
+
+    const DeleteHandler = (id) => {
+        fetch("/api/upload/delete-upload", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -22,7 +28,7 @@ const HomePage = () => {
           body: JSON.stringify({ id: id }),
         }).then(() => {
             getCategotyData()
-            alert("delete Succfully")
+            alert("delete Successfully")
         });
     }; 
     
@@ -129,6 +135,7 @@ const HomePage = () => {
             </div>
         </div>
         <UploadFile open={open} setOpen={setOpen} getCategotyData={getCategotyData} />
+        <UpdateFile open={updateOpen} setOpen={setUpdateOpen} id={ids} getCategotyData={getCategotyData} />
         </>
     )
 }

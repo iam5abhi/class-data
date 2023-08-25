@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import Head from 'next/head';
 
 
-export default function UploadFile ({setOpen,open,getCategotyData}) {
+export default function UpdateFile ({setOpen,open,getCategotyData,id}) {
   const cancelButtonRef = useRef(null)
   const [subcategory,setSubcategory]=useState([])
   const [formData,setFormData]=useState({subcategory:'',file:'',title:'',uploadType:''})
@@ -37,12 +37,12 @@ export default function UploadFile ({setOpen,open,getCategotyData}) {
 
   const handleSubmit =(event)=>{
       event.preventDefault();
-      fetch("/api/upload/add-upload", {
+      fetch("/api/upload/update-upload", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({...formData,id:id}),
       }).then((res) => {
          setOpen(false) 
          getCategotyData()
@@ -62,9 +62,25 @@ export default function UploadFile ({setOpen,open,getCategotyData}) {
       .catch((error) => {console.error("Error fetching or parsing data:", error);});
   };
 
+  const getSingleData = () => {
+    fetch("/api/upload/get-singleupload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    }).then((res) => { if (!res.ok) { throw new Error("Network response was not ok"); }
+        return res.json(); // Parse the JSON data
+      })
+      .then((data) => { setFormData({ subcategory:data.subcategory, file:data.file,
+        title:data.title, uploadType:data.uploadType })})
+      .catch((error) => {console.error("Error fetching or parsing data:", error);});
+  };
+
   useEffect(() => {
+    getSingleData();
     getContactData();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -134,20 +150,20 @@ export default function UploadFile ({setOpen,open,getCategotyData}) {
                           </div>
                           <div className='mb-4'>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title <span class="text-red-600">*</span></label>
-                            <input type="text" name='title' onChange={OnChangeHandler} id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder='Enter Title' required/>
+                            <input type="text" value={formData.title} name='title' onChange={OnChangeHandler} id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder='Enter Title' required/>
                           </div>
                           <div className="mb-4 flex gap-5">
                           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File Type <span class="text-red-600">*</span></label>
                             <div className="flex gap-1">
-                                <input type="radio" id="name" name='uploadType' value="WORD" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
+                                <input type="radio" id="name" checked={formData.uploadType=="WORD"} name='uploadType' value="WORD" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
                                 <label htmlfor="specialization" className="block text-sm font-medium text-gray-900 ">WORD</label>
                             </div>
                             <div className="flex gap-1">
-                                <input type="radio" id="name" name='uploadType' value="PPT" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
+                                <input type="radio" id="name" checked={formData.uploadType=="PPT"} name='uploadType' value="PPT" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
                                 <label htmlfor="specialization" className="block text-sm font-medium text-gray-900 ">PPT</label>
                             </div>
                             <div className="flex gap-1">
-                                <input type="radio" id="name" name='uploadType' value="XLS" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
+                                <input type="radio" id="name" checked={formData.uploadType=="XLS"} name='uploadType' value="XLS" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
                                 <label htmlfor="specialization" className="block text-sm font-medium text-gray-900 ">XLS</label>
                             </div>
                           </div>
@@ -155,7 +171,7 @@ export default function UploadFile ({setOpen,open,getCategotyData}) {
                             <button
                             className='bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded'
                             type='button'
-                            onClick={()=>openupWidget("ProjectPhotos")}
+                            onClick={()=>openupWidget()}
                             >
                             Upload File
                             </button>
