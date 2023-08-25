@@ -4,7 +4,7 @@ const xata = getXataClient();
 
 const handler = async (req, res) => {
 const { id } = req.body;
-  const results = await xata.db.QueryForm.read(id);
+  const results = await xata.db.classdata.read(id);
   res.send(results);
 };
 

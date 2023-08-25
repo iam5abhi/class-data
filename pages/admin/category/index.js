@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React,{useState,useEffect} from 'react'
 import PrivateRoute from '../../../PrivateRoute/PrivateRoute';
 import AddCategory from '../../../components/Admin/Category/AddCategory';
@@ -6,7 +5,7 @@ import UpdateCategory from '../../../components/Admin/Category/UpdateCategory';
 
 const Category = () => {
     const [queries,setQueries]=useState([])
-    const [open,setOpen]=useState(false)
+    const [openn,setOpenn]=useState(false)
     const [updateOpen,setUpdateOpen]=useState(false)
     const [ids,setIds]=useState('')
 
@@ -65,7 +64,7 @@ const Category = () => {
                     <h2 className="text-2xl font-semibold leading-tight">Category</h2>
                     <div className='flex gap-2'>
                         <input type="text" name='email' onChange={SearchHandler} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-1" placeholder='Search' />
-                        <h2 onClick={()=>setOpen(true)} className="cursor-pointer text-lg font-semibold  leading-tight bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l shadow-md text-white rounded-full shadow px-5 py-1">Add Category</h2>
+                        <h2 onClick={()=>setOpenn(true)} className="cursor-pointer text-lg font-semibold  leading-tight bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l shadow-md text-white rounded-full shadow px-5 py-1">Add Category</h2>
                     </div>
                 </div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -114,7 +113,7 @@ const Category = () => {
                 </div>
             </div>
         </div>
-        <AddCategory setOpen={setOpen} open={open} getQueriesData={getQueriesData} />
+        <AddCategory setOpen={(bool) => setOpenn(bool)} open={openn} getQueriesData={getQueriesData} />
         <UpdateCategory setOpen={setUpdateOpen} open={updateOpen} id={ids} getQueriesData={getQueriesData} />
         </>
     )

@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
 import React,{useState,useEffect} from 'react'
 import PrivateRoute from '../../PrivateRoute/PrivateRoute';
-import Link from 'next/link';
+import UploadFile from '../../components/UploadFile/UploadFile';
 
-const Url = () => {
+const HomePage = () => {
     const router = useRouter();
     const [contact,setContact]=useState()
+    const [open,setOpen]=useState(false)
     
     const deleteContacts = (id) => {
         fetch("/api/property/delete-property", {
@@ -34,7 +35,7 @@ const Url = () => {
     // };
 
     const getCategotyData = ()=>{
-        fetch("/api/property/get-property", { 
+        fetch("/api/upload/get-upload", { 
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -48,36 +49,82 @@ const Url = () => {
     }, [])
     return (
         <>
-           <div className="w-screen">
-                <div className="mx-auto grid max-w-screen-lg px-6 pb-20">
-                    <div className>
-                        <p className="mt-8 font-serif text-xl font-bold text-blue-900">Select a date</p>
-                        <div className="relative mt-4 w-56">
-                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                <svg aria-hidden="true" className="h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillrule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" cliprule="evenodd" /></svg>
-                            </div>
-                            <input autofocus="autofocus" type="date" className="datepicker-input block w-full rounded-lg border border-emerald-300 bg-emerald-50 p-2.5 pl-10 text-emerald-800 outline-none ring-opacity-30 placeholder:text-emerald-800 focus:ring focus:ring-emerald-300 sm:text-sm" placeholder="Select date" />
-                        </div>
+           <div className="container mx-auto px-4 sm:px-8">
+            <div className="py-8">
+                <div className='px-2 flex justify-between'>
+                    <h2 className="text-2xl font-semibold leading-tight">Data</h2>
+                    <div className='flex gap-2'>
+                        <input type="text" name='email' id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-1" placeholder='Search' />
+                        <h2 onClick={()=>setOpen(true)} className="cursor-pointer text-lg font-semibold  leading-tight bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l shadow-md text-white rounded-full shadow px-5 py-1">Upload</h2>
                     </div>
-                    <div className>
-                        <p className="mt-8 font-serif text-xl font-bold text-blue-900">Select a time</p>
-                        <div className="mt-4 grid grid-cols-4 gap-2 lg:max-w-xl">
-                            <button className="rounded-lg bg-emerald-100 px-4 py-2 font-medium text-emerald-900 active:scale-95">12:00</button>
-                            <button className="rounded-lg bg-emerald-100 px-4 py-2 font-medium text-emerald-900 active:scale-95">14:00</button>
-                            <button className="rounded-lg bg-emerald-700 px-4 py-2 font-medium text-white active:scale-95">09:00</button>
-                            <button className="rounded-lg bg-emerald-100 px-4 py-2 font-medium text-emerald-900 active:scale-95">12:00</button>
-                            <button className="rounded-lg bg-emerald-100 px-4 py-2 font-medium text-emerald-900 active:scale-95">15:00</button>
-                            <button className="rounded-lg bg-emerald-100 px-4 py-2 font-medium text-emerald-900 active:scale-95">12:00</button>
-                            <button className="rounded-lg bg-emerald-100 px-4 py-2 font-medium text-emerald-900 active:scale-95">14:00</button>
-                            <button className="rounded-lg bg-emerald-100 px-4 py-2 font-medium text-emerald-900 active:scale-95">12:00</button>
-                        </div>
+                </div>
+                <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                    <div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
+                        <table className="min-w-full m leading-normal ">
+                            <thead>
+                                <tr>
+                                    <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                       Title
+                                    </th>
+                                    <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                       Subcategory
+                                    </th>
+                                    <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                        File Type
+                                    </th>
+                                    <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                       Get File
+                                    </th>
+                                    <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                         Status
+                                    </th>
+                                    <th className="text-center px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                        Actions
+                                    </th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {!contact?"loading....":contact.map((data,index)=>{
+                                    return <tr key={index+1}>
+                                    <td className="text-center px-5 py-5 bg-white text-sm">
+                                        {data.title}  
+                                    </td>
+                                    <td className="text-center px-5 py-5 bg-white text-sm">
+                                        {data.subcategory}  
+                                    </td>
+                                    <td className="text-center px-5 py-5 bg-white text-sm">
+                                        {data.uploadType}  
+                                    </td>
+                                    <td className="text-center px-5 py-5 bg-white text-sm">
+                                       <a className="text-blue-600" target='_blank' href={data.file} >Link</a> 
+                                    </td>
+                                    <td className="text-center px-5 py-5 bg-white text-sm">                                                                                                                                            
+                                        <span className={`mr-3 cursor-pointer relative inline-block px-3 py-1 font-semibold ${data.status=="newlead"?"text-green-900":data.status=="inprogress"?"text-yellow-900":data.status=="converted"?"text-purple-900":data.status=="onhold"?"text-blue-900":"text-red-900"} leading-tight`}>
+                                            <span aria-hidden className={`absolute inset-0 opacity-50 rounded-full ${data.status=="newlead"?"bg-green-200":data.status=="inprogress"?"bg-yellow-200":data.status=="converted"?"bg-purple-200":data.status=="onhold"?"bg-blue-200":"bg-red-200"}`} />
+                                            <span className="relative">{data.status}</span>
+                                        </span>
+                                    </td>  
+                                    <td className="text-center px-5 py-5 bg-white text-sm">
+                                        <span onClick={()=>UpdateHandler(data.id)} className="mr-3 cursor-pointer relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
+                                            <span aria-hidden className="absolute inset-0 bg-yellow-200 opacity-50 rounded-full" />
+                                            <span className="relative">Update</span>
+                                        </span>
+                                        <span onClick={()=>DeleteHandler(data.id)} className="mr-3 cursor-pointer relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                            <span aria-hidden className="absolute inset-0 bg-red-200 opacity-50 rounded-full" />
+                                            <span className="relative">Delete</span>
+                                        </span>
+                                    </td> 
+                                </tr>
+                                })}
+                            </tbody>
+                        </table>
                     </div>
-                    <button className="mt-8 w-56 rounded-full border-8 border-emerald-500 bg-emerald-600 px-10 py-4 text-lg font-bold text-white transition hover:translate-y-1">Book Now</button>
                 </div>
             </div>
-
+        </div>
+        <UploadFile open={open} setOpen={setOpen} getCategotyData={getCategotyData} />
         </>
     )
 }
 
-export default PrivateRoute(Url)
+export default PrivateRoute(HomePage)

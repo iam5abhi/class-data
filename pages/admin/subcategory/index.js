@@ -5,9 +5,28 @@ import AddSubcategory from '../../../components/Admin/Subcategory/AddSubcategory
 import UpdateSubcategory from '../../../components/Admin/Subcategory/UpdateSubcategory';
 
 const Subcategory = () => {
-    const router = useRouter();
     const [queries,setQueries]=useState([])
-    const [open,setOpen]=useState(false)
+    const [subOpen,setSubOpen]=useState(false)
+    const [updateOpen,setUpdateOpen]=useState(false)
+    const [ids,setIds]=useState('')
+
+    const UpdateHandler =(id)=>{
+        setUpdateOpen(true);
+        setIds(id);
+    }
+
+    const DeleteHandler =(id)=>{
+        fetch("/api/subcategory/delete-subcategory", { 
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          body: JSON.stringify({ id: id }),
+          }).then(() =>{
+            alert('Delete Successfully')
+            getQueriesData()
+          }).catch((error) => alert(error))
+    }
 
     const SearchHandler = async (event)=>{
         const query = event.target.value.toLowerCase();
@@ -26,7 +45,7 @@ const Subcategory = () => {
     }
 
     const getQueriesData = ()=>{
-        fetch("/api/queryForm/get-query", { 
+        fetch("/api/subcategory/get-subcategory", { 
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -46,7 +65,7 @@ const Subcategory = () => {
                     <h2 className="text-2xl font-semibold leading-tight">Subcategory</h2>
                     <div className='flex gap-2'>
                         <input type="text" name='email' onChange={SearchHandler} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-1" placeholder='Search' />
-                        <h2 onClick={()=>setOpen(true)} className="cursor-pointer text-lg font-semibold  leading-tight bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l shadow-md text-white rounded-full shadow px-5 py-1">Add Subcategory</h2>
+                        <h2 onClick={()=>setSubOpen(true)} className="cursor-pointer text-lg font-semibold  leading-tight bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l shadow-md text-white rounded-full shadow px-5 py-1">Add Subcategory</h2>
                     </div>
                 </div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -84,9 +103,13 @@ const Subcategory = () => {
                                         </span>
                                     </td>  
                                     <td className="text-center px-5 py-5 bg-white text-sm">
-                                        <span onClick={()=>router.push(`/admin/queries/${data.id}`)} className="mr-3 cursor-pointer relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
+                                        <span onClick={()=>UpdateHandler(data.id)} className="mr-3 cursor-pointer relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
                                             <span aria-hidden className="absolute inset-0 bg-yellow-200 opacity-50 rounded-full" />
                                             <span className="relative">Update</span>
+                                        </span>
+                                        <span onClick={()=>DeleteHandler(data.id)} className="mr-3 cursor-pointer relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                            <span aria-hidden className="absolute inset-0 bg-red-200 opacity-50 rounded-full" />
+                                            <span className="relative">Delete</span>
                                         </span>
                                     </td> 
                                 </tr>
@@ -97,8 +120,8 @@ const Subcategory = () => {
                 </div>
             </div>
         </div>
-        <AddSubcategory setOpen={setOpen} open={open} getQueriesData={getQueriesData} />
-        <UpdateSubcategory setOpen={setOpen} open={open} getQueriesData={getQueriesData} />
+        <AddSubcategory setOpen={setSubOpen} open={subOpen} getQueriesData={getQueriesData} />
+        <UpdateSubcategory setOpen={setUpdateOpen} open={updateOpen} id={ids} getQueriesData={getQueriesData} />
         </>
     )
 }

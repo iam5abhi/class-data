@@ -3,7 +3,7 @@ const xata = getXataClient();
 
 const handler = async (req, res) => {
   const { id, logo,alternatePhoneNumber,email,phoneNumber,about } = req.body;
-  const results = await xata.db.homePage.createOrUpdate(id,{
+  const results = await xata.db.classdata.createOrUpdate(id,{
     logo,
     alternatePhoneNumber,
     email,

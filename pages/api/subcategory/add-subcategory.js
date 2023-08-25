@@ -4,7 +4,7 @@ import { getXataClient } from "../../../src/xata";
 const xata = getXataClient();
 
 const handler = async (req, res) => {
-  const data = await xata.db.QueryForm.create(req.body);
+  const data = await xata.db.subcategory.create(req.body);
   res.send(data);
 };
 

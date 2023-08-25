@@ -2,8 +2,8 @@ import { getXataClient } from '../../../src/xata';
 const xata = getXataClient();
 
 const handler = async (req, res) => {
-
-  const results = await xata.db.homePage.getAll();
+  const results = await xata.db.subcategory.getMany();
+  results.sort((a, b) => b.xata.createdAt - a.xata.createdAt);
   res.send(results);
 };
 
