@@ -22,23 +22,28 @@ const ViewProject = () => {
     }
 
     const GetProjectData =()=>{
-        fetch("/api/upload/get-upload", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-        body: JSON.stringify({id:id}),
-        }).then((res) => { if (!res.ok) { throw new Error("Network response was not ok"); }
-          return res.json(); // Parse the JSON data
-        })
-        .then((data) => { setProject(data) })
-        .catch((error) => {console.error("Error fetching or parsing data:", error);});
+        if(subcategory){
+            fetch("/api/filter/project-filter", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+              body: JSON.stringify({subcategory:subcategory.name}),
+              }).then((res) => { if (!res.ok) { throw new Error("Network response was not ok"); }
+                return res.json(); // Parse the JSON data
+              })
+              .then((data) => { setProject(data) })
+              .catch((error) => {console.error("Error fetching or parsing data:", error);});
+        }
     }
 
     useEffect(() => {
         GetSingleData();
-        GetProjectData();
     }, [id]);
+
+    useEffect(() => {
+        GetProjectData();
+    }, [id && subcategory]);
 
   return (
     <div className='text-center'>
