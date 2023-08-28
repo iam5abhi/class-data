@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react'
-// import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+const DocViewer = dynamic(() => import('react-doc-viewer'), { ssr: false });
 import FileSaver from 'file-saver';
 
 const Download = () => {
     const router = useRouter()
     const {id} = router.query
     const [subcategory,setSubcategory]=useState()
-
     const saveManual = () => {
       if (window) {
         FileSaver.saveAs(!subcategory ? null : subcategory.file, !subcategory ? null : subcategory.title);
@@ -34,12 +34,12 @@ const Download = () => {
 
   return (
     <div className='text-center'>
-        {/* <DocViewer
-          pluginRenderers={DocViewerRenderers}
+        <DocViewer
+          pluginRenderers={import("react-doc-viewer").DocViewerRenderers}
           documents={[ { uri:!subcategory?null:subcategory.file } ]}
           style={{ height: 450 }}
-        /> */}
-        {typeof window !== 'undefined' && (
+        />
+       {typeof window !== 'undefined' && (
             <div className='mt-5'>
                 <button
                     type='button'
