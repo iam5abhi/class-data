@@ -44,7 +44,7 @@ const Download = () => {
                 <button
                     type='button'
                     onClick={saveManual}
-                    className="inline-flex items-center px-10 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-medium rounded-md"
+                    className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l text-white text-lg font-medium rounded-md"
                 >
                     <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />

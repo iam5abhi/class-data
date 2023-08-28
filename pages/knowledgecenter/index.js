@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
@@ -57,10 +58,25 @@ const KnowledgeCenter = () => {
                     {category.map(data=><option key={data.id} value={data.name}>{data.name}({data.categoryName})</option>)}
                 </select>
             </div>
-            <div className='grid grid-cols-4 px-20 mt-6' >
-                {subcategory.map((data)=>{
-                    return <div key={data.id} onClick={()=>router.push(`/knowledgecenter/${data.id}`)} className='cursor-pointer shadow border text-center py-10'>{data.name}</div>
-                })}
+            <div className="px-20 mt-10">
+                <div className="grid gap-6 mb-6 grid-cols-1 md:grid-cols-3">
+                {subcategory.length==0 ? null :<>
+                    {subcategory.map((data) => {
+                    return <>
+                    <div key={data.id} onClick={()=>router.push(`/knowledgecenter/${data.id}`)} className='cursor-pointer'><div className="grid2">
+                    <div className="max-w-sm rounded-full bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l shadow-md">
+                        <div className="p-5">
+                            <h5 className="text-center text-white text-xl md:text-3xl font-semibold tracking-tight uppercase">{data.name}</h5>
+                        </div>
+                    </div>
+                    </div></div>
+                    </>
+                    })}
+                    </>
+                    }
+                    <div>
+                    </div>
+                </div>
             </div>
         </>
     )
