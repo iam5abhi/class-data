@@ -39,12 +39,20 @@ const Download = () => {
           documents={[ { uri:!subcategory?null:subcategory.file } ]}
           style={{ height: 450 }}
         />
-        <div className='mt-5'>
-        <button type='button' onClick={saveManual} className="inline-flex items-center px-10 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-medium rounded-md">
-            <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
-            Download Now
-        </button>
-        </div>
+        {typeof window !== 'undefined' && ( // This condition ensures rendering only on the client side
+            <div className='mt-5'>
+                <button
+                    type='button'
+                    onClick={saveManual}
+                    className="inline-flex items-center px-10 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-medium rounded-md"
+                >
+                    <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                    </svg>
+                    Download Now
+                </button>
+            </div>
+        )}
     </div>
   )
 }
