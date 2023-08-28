@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 const ViewProject = () => {
     const router = useRouter()
     const {id} = router.query
-    const [subcategory,setSubcategory]=useState({})
+    const [subcategory,setSubcategory]=useState()
     const [project,setProject]=useState([])
 
     const GetSingleData =()=>{
@@ -39,6 +39,10 @@ const ViewProject = () => {
         GetSingleData();
         GetProjectData();
     }, [id]);
+    
+    if (!subcategory){
+        return false;
+    }
 
   return (
     <div className='text-center'>

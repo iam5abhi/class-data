@@ -6,7 +6,7 @@ import FileSaver from 'file-saver';
 const Download = () => {
     const router = useRouter()
     const {id} = router.query
-    const [subcategory,setSubcategory]=useState({})
+    const [subcategory,setSubcategory]=useState()
 
     const saveManual = () => {
         FileSaver.saveAs(subcategory.file,subcategory.title);
@@ -29,6 +29,10 @@ const Download = () => {
     useEffect(() => {
         GetSingleData();
     }, [id]);
+
+    if (!subcategory){
+      return false;
+  }
 
   return (
     <div className='text-center'>
