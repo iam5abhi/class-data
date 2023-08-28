@@ -9,7 +9,7 @@ const Download = () => {
     const [subcategory,setSubcategory]=useState()
 
     const saveManual = () => {
-        FileSaver.saveAs(subcategory.file,subcategory.title);
+        FileSaver.saveAs(!subcategory?null:subcategory.file,!subcategory?null:subcategory.title);
     };
 
     const GetSingleData =()=>{
@@ -30,15 +30,11 @@ const Download = () => {
         GetSingleData();
     }, [id]);
 
-    if (!subcategory){
-      return false;
-  }
-
   return (
     <div className='text-center'>
         <DocViewer
           pluginRenderers={DocViewerRenderers}
-          documents={[ { uri:subcategory.file } ]}
+          documents={[ { uri:!subcategory?null:subcategory.file } ]}
           style={{ height: 450 }}
         />
         <div className='mt-5'>

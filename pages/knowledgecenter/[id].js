@@ -39,19 +39,15 @@ const ViewProject = () => {
         GetSingleData();
         GetProjectData();
     }, [id]);
-    
-    if (!subcategory){
-        return false;
-    }
 
   return (
     <div className='text-center'>
         <div className='text-5xl font-bold mt-5'>
-            {subcategory.name}({subcategory.categoryName})
+            {!subcategory?null:subcategory.name}({!subcategory?null:subcategory.categoryName})
         </div>
         <div className='mt-5'>
             <div className='font-semibold text-xl'>About:</div>
-            {subcategory.aboutFirst}
+            {!subcategory?null:subcategory.aboutFirst}
         </div>
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-4">
@@ -94,7 +90,7 @@ const ViewProject = () => {
         </div>
         <div className='mt-5'>
             <div  className='font-semibold text-xl'>About:</div>
-            {subcategory.aboutSecond}
+            {!subcategory?null:subcategory.aboutSecond}
         </div>
     </div>
   )
