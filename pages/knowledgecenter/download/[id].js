@@ -1,13 +1,19 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+import FileSaver from 'file-saver';
 
-const ViewProject = () => {
+const Download = () => {
     const router = useRouter()
     const {id} = router.query
     const [subcategory,setSubcategory]=useState({})
 
+    const saveManual = () => {
+        FileSaver.saveAs(subcategory.file,subcategory.title);
+    };
+
     const GetSingleData =()=>{
-        fetch("/api/subcategory/get-singlesubcategory", {
+        fetch("/api/upload/get-singleupload", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
@@ -26,23 +32,19 @@ const ViewProject = () => {
 
   return (
     <div className='text-center'>
-        <div className='text-5xl font-bold mt-5'>
-            {subcategory.name}({subcategory.categoryName})
-        </div>
+        <DocViewer
+          pluginRenderers={DocViewerRenderers}
+          documents={[ { uri:subcategory.file } ]}
+          style={{ height: 450 }}
+        />
         <div className='mt-5'>
-            <div className='font-semibold text-xl'>About:</div>
-            {subcategory.aboutFirst}
-        </div>
-        <div className='mt-5'>
-            <div className='font-semibold text-xl'>Download</div>
-           <div onClick={()=>router.push(`/view/download/${id}`)} className='text-blue-600 cursor-pointer'>Download Now</div>
-        </div>
-        <div className='mt-5'>
-            <div  className='font-semibold text-xl'>About:</div>
-            {subcategory.aboutSecond}
+        <button type='button' onClick={saveManual} className="inline-flex items-center px-10 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-medium rounded-md">
+            <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
+            Download Now
+        </button>
         </div>
     </div>
   )
 }
 
-export default ViewProject
+export default Download

@@ -25,10 +25,11 @@ const Header = () => {
                 }
                 <div className="items-center justify-between w-full md:flex md:w-auto md:order-1 hidden" id="navbar-cta">
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
-                    {!user ? 
+                    {!user ? <>
                         <li>
                             <Link href="/login" className="block py-2 pl-3 pr-4 text-violet-950  rounded md:bg-transparent md:p-0 " aria-current="page">Login</Link>
                         </li> 
+                        </>
                         : <>
                         <li>
                             <Link href="/admin" className="block py-2 pl-3 pr-4 text-violet-950  rounded md:bg-transparent md:p-0 " aria-current="page">Home</Link>
@@ -44,6 +45,9 @@ const Header = () => {
                         </li>
                         </>
                     }   
+                    <li>
+                        <Link href="/knowledgecenter" className="block py-2 pl-3 pr-4 text-violet-950  rounded md:bg-transparent md:p-0 " aria-current="page">knowledge Center</Link>
+                    </li> 
                     </ul>
                 </div>
             </div>
