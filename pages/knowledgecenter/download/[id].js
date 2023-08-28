@@ -34,12 +34,12 @@ const Download = () => {
 
   return (
     <div className='text-center'>
+       {typeof window !== 'undefined' && (<>
         <DocViewer
           pluginRenderers={import("react-doc-viewer").DocViewerRenderers}
           documents={[ { uri:!subcategory?null:subcategory.file } ]}
           style={{ height: 450 }}
         />
-       {typeof window !== 'undefined' && (
             <div className='mt-5'>
                 <button
                     type='button'
@@ -52,6 +52,7 @@ const Download = () => {
                     Download Now
                 </button>
             </div>
+            </>
         )}
     </div>
   )
