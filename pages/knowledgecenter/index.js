@@ -59,7 +59,7 @@ const KnowledgeCenter = () => {
             </div>
             <div className='grid grid-cols-4 px-20 mt-6' >
                 {subcategory.map((data)=>{
-                    return <div onClick={()=>router.push(`/knowledgecenter/${data.id}`)} className='cursor-pointer shadow border text-center py-10'>{data.name}</div>
+                    return <div key={data.id} onClick={()=>router.push(`/knowledgecenter/${data.id}`)} className='cursor-pointer shadow border text-center py-10'>{data.name}</div>
                 })}
             </div>
         </>
