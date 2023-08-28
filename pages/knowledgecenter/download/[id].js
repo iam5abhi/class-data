@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+// import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import FileSaver from 'file-saver';
 
 const Download = () => {
@@ -34,12 +34,12 @@ const Download = () => {
 
   return (
     <div className='text-center'>
-        <DocViewer
+        {/* <DocViewer
           pluginRenderers={DocViewerRenderers}
           documents={[ { uri:!subcategory?null:subcategory.file } ]}
           style={{ height: 450 }}
-        />
-        {typeof window !== 'undefined' && ( // This condition ensures rendering only on the client side
+        /> */}
+        {typeof window !== 'undefined' && (
             <div className='mt-5'>
                 <button
                     type='button'
