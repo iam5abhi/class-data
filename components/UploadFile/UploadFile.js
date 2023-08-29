@@ -21,7 +21,7 @@ export default function UploadFile ({setOpen,open,getCategotyData}) {
     cloudinary.createUploadWidget(
       {
         cloud_name: "dfwib926s",
-        upload_preset: "ufa6exrd",
+        upload_preset: "preset1",
         multiple: true, // Allow multiple image uploads
       },
       (error, results) => {

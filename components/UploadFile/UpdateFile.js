@@ -20,8 +20,8 @@ export default function UpdateFile ({setOpen,open,getCategotyData,id}) {
   const openupWidget = () => {
     cloudinary.createUploadWidget(
       {
-        cloud_name: "fatimaola",
-        upload_preset: "ufa6exrd",
+        cloud_name: "dfwib926s",
+        upload_preset: "preset1",
         multiple: true, // Allow multiple image uploads
       },
       (error, results) => {
