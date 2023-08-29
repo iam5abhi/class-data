@@ -12,11 +12,11 @@ const Header = () => {
                 <Link href="/" className="flex items-center">
                     <span className="self-center font-semibold whitespace-nowrap ">LOGO</span> {/* <img src="" className='h-8' /> */}
                 </Link>
-                {!user ? null :
                     <div className="flex md:order-2">
                         <Link href="/knowledgecenter" className="mr-5 flex items-center">
                             <span className="self-center font-semibold whitespace-nowrap ">Knowledge Center</span>
                         </Link>
+                        {!user ? null :<>
                         <button type="button" onClick={() => logout()} className="text-white bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-6 py-2 text-center mr-3 md:mr-0">Logout</button>
                         <button data-collapse-toggle="navbar-cta" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="navbar-cta" aria-expanded="false">
                             <span className="sr-only">Open main menu</span>
@@ -24,8 +24,8 @@ const Header = () => {
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M1 1h15M1 7h15M1 13h15" />
                             </svg>
                         </button>
+                        </>}
                     </div>
-                }
                 <div className="items-center justify-between w-full md:flex md:w-auto md:order-1 hidden" id="navbar-cta">
                     <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
                     {!user ? null : <>
