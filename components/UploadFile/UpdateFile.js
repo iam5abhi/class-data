@@ -7,7 +7,7 @@ import Head from 'next/head';
 export default function UpdateFile ({setOpen,open,getCategotyData,id}) {
   const cancelButtonRef = useRef(null)
   const [subcategory,setSubcategory]=useState([])
-  const [formData,setFormData]=useState({subcategory:'',file:'',title:'',uploadType:''})
+  const [formData,setFormData]=useState({subcategory:'',file:'',title:'',uploadType:'',about:''})
 
 
   const OnChangeHandler=(event)=>{
@@ -151,7 +151,7 @@ export default function UpdateFile ({setOpen,open,getCategotyData,id}) {
                           <div className='mb-4'>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title <span class="text-red-600">*</span></label>
                             <input type="text" value={formData.title} name='title' onChange={OnChangeHandler} id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder='Enter Title' required/>
-                          </div>
+                          </div> 
                           <div className="mb-4 flex gap-5">
                           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File Type <span class="text-red-600">*</span></label>
                             <div className="flex gap-1">
@@ -170,6 +170,10 @@ export default function UpdateFile ({setOpen,open,getCategotyData,id}) {
                                 <input type="radio" id="name" checked={formData.uploadType=="PDF"} name='uploadType' value="PDF" onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 " />
                                 <label htmlfor="specialization" className="block text-sm font-medium text-gray-900 ">PDF</label>
                             </div>
+                          </div>
+                          <div className='mb-4'>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title <span class="text-red-600">*</span></label>
+                            <textarea type="text" value={formData.about} name='about' onChange={OnChangeHandler} id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder='Enter About' required/>
                           </div>
                           <div className='mb-5'>
                             <button

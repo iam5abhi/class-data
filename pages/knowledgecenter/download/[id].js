@@ -33,6 +33,7 @@ const Download = () => {
     }, [id]);
 
   return (
+    <>
     <div className='text-center'>
        {typeof window !== 'undefined' && (<>
         <DocViewer
@@ -55,6 +56,11 @@ const Download = () => {
             </>
         )}
     </div>
+    <div className='mt-5 px-10' >
+    <h1 className='text-xl font-bold'>About :</h1>
+        <div>{!subcategory?null:subcategory.about}</div>
+  </div>
+ </>
   )
 }
 
