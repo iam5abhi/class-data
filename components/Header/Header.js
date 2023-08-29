@@ -60,7 +60,7 @@ const Header = () => {
                         </ul>
                     </div> */}
                     <li>
-                        <Link href="/knowledgecenter" className="block py-2 pl-3 pr-4 text-violet-950  rounded md:bg-transparent md:p-0 " aria-current="page">knowledge Center</Link>
+                        <Link href="/knowledgecenter" className="block py-2 pl-3 pr-4 text-violet-950  rounded md:bg-transparent md:p-0 " aria-current="page">Knowledge Center</Link>
                     </li> 
                     </ul>
                 </div>
