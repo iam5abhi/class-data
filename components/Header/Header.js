@@ -14,6 +14,9 @@ const Header = () => {
                 </Link>
                 {!user ? null :
                     <div className="flex md:order-2">
+                        <Link href="/knowledgecenter" className="mr-5 flex items-center">
+                            <span className="self-center font-semibold whitespace-nowrap ">Knowledge Center</span>
+                        </Link>
                         <button type="button" onClick={() => logout()} className="text-white bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-6 py-2 text-center mr-3 md:mr-0">Logout</button>
                         <button data-collapse-toggle="navbar-cta" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="navbar-cta" aria-expanded="false">
                             <span className="sr-only">Open main menu</span>
