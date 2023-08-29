@@ -13,7 +13,7 @@ const Header = () => {
                     <span className="self-center font-semibold whitespace-nowrap ">LOGO</span> {/* <img src="" className='h-8' /> */}
                 </Link>
                     <div className="flex md:order-2">
-                        <Link href="/knowledgecenter" className="mr-5 flex items-center">
+                        <Link href="/knowledgecenter" className="mr-5 flex items-center sm:hidden">
                             <span className="self-center font-semibold whitespace-nowrap ">Knowledge Center</span>
                         </Link>
                         {!user ? null :<>
