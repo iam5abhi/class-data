@@ -3,9 +3,18 @@ import 'tailwindcss/tailwind.css'
 import '../style/globle.css'
 import 'react-quill/dist/quill.snow.css';
 import Head from 'next/head';
+import React, {useEffect } from 'react';
+import ReactGA from 'react-ga';
+const TRACKING_ID = "G-145K8ZM6EW"; // OUR_TRACKING_ID
 
+
+ReactGA.initialize(TRACKING_ID);
 function MyApp({ Component, pageProps }) {
-  
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+ 
   return(
       <>
         <Head>
@@ -15,12 +24,6 @@ function MyApp({ Component, pageProps }) {
           crossorigin="anonymous"></script>
           {/* <!-- Google tag (gtag.js) --> */}
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-145K8ZM6EW"></script>
-           <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-145K8ZM6EW');
-          </script> 
         </Head>
         <Header />
         <Component {...pageProps} />
