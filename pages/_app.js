@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
           <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         </Head>
         <Header />
-        <GoogleAnalytics measurementId="G-145K8ZM6EW" />
+        <GoogleAnalytics measurementId="G-92CB2T2L9X" />
         <Component {...pageProps} />
       </> 
   )
