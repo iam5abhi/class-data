@@ -13,12 +13,9 @@ function MyApp({ Component, pageProps }) {
         <Head>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
           <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4914031929849543"
-          crossorigin="anonymous"></script>
-          
         </Head>
         <Header />
-        <GoogleAnalytics measurementId="G-145K8ZM6EW" />
+        <GoogleAnalytics measurementId="G-KDLXEFRJVX" />
         <Component {...pageProps} />
       </> 
   )
