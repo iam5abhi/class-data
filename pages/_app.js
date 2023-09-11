@@ -3,17 +3,10 @@ import 'tailwindcss/tailwind.css'
 import '../style/globle.css'
 import 'react-quill/dist/quill.snow.css';
 import Head from 'next/head';
-import React, {useEffect } from 'react';
-import ReactGA from 'react-ga';
-const TRACKING_ID = "G-145K8ZM6EW"; // OUR_TRACKING_ID
+import GoogleAnalytics from "@bradgarropy/next-google-analytics"
 
 
-ReactGA.initialize(TRACKING_ID);
 function MyApp({ Component, pageProps }) {
-
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
  
   return(
       <>
@@ -22,10 +15,10 @@ function MyApp({ Component, pageProps }) {
           <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4914031929849543"
           crossorigin="anonymous"></script>
-          {/* <!-- Google tag (gtag.js) --> */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-145K8ZM6EW"></script>
+          
         </Head>
         <Header />
+        <GoogleAnalytics measurementId="G-145K8ZM6EW" />
         <Component {...pageProps} />
       </> 
   )
