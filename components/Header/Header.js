@@ -1,12 +1,15 @@
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { auth, logout } from "../../components/firebase/index";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useRouter } from 'next/router';
 
 const Header = () => {
     const [user] = useAuthState(auth);
+    const router = useRouter()
     return (
         <>
+        {router.pathname=='/ads.txt'?null:
         <nav className="bg-white border-gray-200 shadow">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link href="/" className="flex items-center">
@@ -69,6 +72,7 @@ const Header = () => {
                 </div>
             </div>
         </nav>
+        }
         </>
     )
 }
